@@ -72,48 +72,9 @@ dsh plugin --profile web remove dsh-pet-whale
 
 并删除 `cordis.patch.yml` 中的 insert 段（以及 `~/.dsh/profiles/web/node_modules/dsh-pet-whale` 残留目录）。
 
-## 🧑‍💻 开发
+## 🧑‍💻 开发与发布
 
-```bash
-npm test          # 渲染回归测试（发布前必跑）
-npm run check     # 语法检查
-```
-
-改完代码后，把 `lib/` 同步到安装副本，重启 dsh web 生效：
-
-```bash
-# 若用 file: 方式安装（pnpm 符号链接），改源码即生效，无需复制
-```
-
-## 📤 发布
-
-### 手动发布
-
-```bash
-npm version patch     # 版本号 +1（自动跑 prepublishOnly 测试）
-git tag v0.1.1 && git push --tags
-npm publish
-```
-
-### 自动发布（GitHub Actions）
-
-仓库已内置 `.github/workflows/publish.yml`：**推送 `v*` tag 时自动跑测试并发布到 npm**。
-
-首次使用需要配一次 token：
-
-1. 在 [npmjs.com → Access Tokens](https://www.npmjs.com/settings/LuffySmile/tokens) 创建一个 **Granular Access Token**（权限：只给 `dsh-pet-whale` 这个包 `Read and write`）
-2. 在 GitHub 仓库 **Settings → Secrets and variables → Actions → New repository secret** 添加：
-   - Name: `NPM_TOKEN`
-   - Value: 刚创建的 token
-
-之后日常发布只需：
-
-```bash
-npm version patch
-git push --tags
-```
-
-推送 tag 后 Actions 自动完成测试 + 发布。
+维护者请查看 [docs/PUBLISHING.md](docs/PUBLISHING.md)（本地开发、发布到 npm、GitHub Actions 自动发布配置）。
 
 ## 📄 License
 
