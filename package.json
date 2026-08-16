@@ -1,0 +1,46 @@
+{
+  "name": "dsh-pet-whale",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness 桌面宠物：空闲睡觉 / 思考巡游 / 执行任务全屏游 / 超 5 分钟喷水。可动尾巴小鲸鱼。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "assets"
+  ],
+  "dsh": {
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "test": "node test/render.test.cjs",
+    "prepublishOnly": "npm test",
+    "check": "node --check lib/index.js && node --check lib/client.js"
+  },
+  "keywords": [
+    "deepseek",
+    "dsh",
+    "desktop-pet",
+    "whale",
+    "cordis",
+    "web-plugin"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuffySmile/dsh-pet-whale.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
+}

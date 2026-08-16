@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c3b3b"/>
+      <stop offset="55%" stop-color="#0e8ea6"/>
+      <stop offset="100%" stop-color="#33d6c4"/>
+    </linearGradient>
+    <linearGradient id="whale" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#33d6c4"/>
+      <stop offset="100%" stop-color="#0e8ea6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="320" fill="url(#bg)"/>
+
+  <!-- 气泡装饰 -->
+  <circle cx="1050" cy="70" r="16" fill="#ffffff" opacity="0.12"/>
+  <circle cx="1108" cy="150" r="9" fill="#ffffff" opacity="0.10"/>
+  <circle cx="1000" cy="235" r="22" fill="#ffffff" opacity="0.08"/>
+  <circle cx="1130" cy="262" r="11" fill="#ffffff" opacity="0.10"/>
+  <circle cx="980" cy="120" r="6" fill="#ffffff" opacity="0.14"/>
+
+  <!-- 鲸鱼（与宠物同源路径） -->
+  <g transform="translate(100, 128) scale(3)">
+    <path d="M 15 33.6 C 20 35.4, 30 35.4, 38 32.3 C 34 35, 24 35.2, 15 33.6 Z" fill="#ffffff" opacity="0.30"/>
+    <path d="M 12 27.5 C 12 19, 19 13.5, 29 14 C 36 14.5, 42 18, 44.5 22.5 C 46.5 26, 46 29, 44 30.5 C 40 33.5, 33 36, 25 35.8 C 18 35.6, 13.5 33, 12 27.5 Z" fill="url(#whale)"/>
+    <path d="M 13.2 28.2 C 9.5 26.5, 5 25.2, 2.2 23.8 C 4.2 26.2, 7.5 28.6, 10.5 29.6 C 8.5 31.8, 5 34.6, 2.8 36.8 C 5.5 34.4, 9.5 32, 13.4 30.2 C 13.6 29.5, 13.5 28.8, 13.2 28.2 Z" fill="url(#whale)"/>
+    <path d="M 20 32.5 C 21 34.5, 20.5 37.5, 19 39 C 22 38, 25.5 36.5, 27 35.5 C 25 34.5, 22.5 33.5, 20 32.5 Z" fill="url(#whale)"/>
+    <path d="M 41.6 27.6 Q43.4 29.2 42 30.4" fill="none" stroke="#0d4038" stroke-width="0.5" stroke-linecap="round" opacity="0.45"/>
+    <circle cx="37.5" cy="20.6" r="2.05" fill="#ffffff"/>
+    <circle cx="38.05" cy="20.55" r="0.85" fill="#0d4038"/>
+  </g>
+
+  <!-- 文字 -->
+  <text x="330" y="140" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="58" font-weight="700" fill="#ffffff">dsh-pet-whale</text>
+  <text x="333" y="192" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="26" fill="#d7fff4">DeepSeek Harness 桌面宠物 · 会游泳 · 会喷水 · 会睡觉</text>
+  <text x="333" y="238" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="18" fill="#a7e8dc">npm install → dsh plugin add dsh-pet-whale</text>
+</svg>
