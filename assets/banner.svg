@@ -34,5 +34,5 @@
   <!-- 文字 -->
   <text x="330" y="140" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="58" font-weight="700" fill="#ffffff">dsh-pet-whale</text>
   <text x="333" y="192" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="26" fill="#d7fff4">DeepSeek Harness 桌面宠物 · 会游泳 · 会喷水 · 会睡觉</text>
-  <text x="333" y="238" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="18" fill="#a7e8dc">npm install → dsh plugin add dsh-pet-whale</text>
+  <text x="333" y="238" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" font-size="18" fill="#a7e8dc">开源 · 非官方 · 支持 Web 与桌面端</text>
 </svg>

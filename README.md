@@ -19,26 +19,23 @@ DeepSeek Harness 桌面宠物：一只会游泳、会喷水的 DeepSeek 小鲸�
 
 ## 📦 安装
 
-### 方式一：npm 包（推荐）
+> npm 版本筹备中；发布后可直接 `dsh plugin --profile web add dsh-pet-whale`。
+> 目前请使用以下两种方式之一。
 
-```bash
-dsh plugin --profile web add dsh-pet-whale
-```
-
-### 方式二：GitHub clone
+### 方式一：从 GitHub clone
 
 ```bash
 git clone https://github.com/LuffySmile/dsh-pet-whale.git
 dsh plugin --profile web add file:<克隆到的路径>
 ```
 
-### 方式三：本地源码
+### 方式二：本地源码
 
 ```bash
 dsh plugin --profile web add file:D:\路径\dsh-pet-whale
 ```
 
-### 挂载（所有方式都需要）
+### 挂载（两种方式都需要）
 
 `dsh plugin add` 只负责安装包，还需要在 profile 的补丁层挂载它。在
 `~/.dsh/profiles/web/cordis.patch.yml` 中追加：
@@ -61,16 +58,16 @@ dsh plugin --profile web add file:D:\路径\dsh-pet-whale
 ## 🔄 更新
 
 ```bash
-dsh plugin --profile web add dsh-pet-whale@latest
+cd <仓库路径> && git pull
 ```
+
+若用 `file:` 方式安装（pnpm 符号链接），源码更新即生效，重启 dsh web 即可；
+若之前是手动复制安装，把 `lib/` 重新同步到安装副本后重启。
 
 ## 🗑️ 卸载
 
-```bash
-dsh plugin --profile web remove dsh-pet-whale
-```
-
-并删除 `cordis.patch.yml` 中的 insert 段（以及 `~/.dsh/profiles/web/node_modules/dsh-pet-whale` 残留目录）。
+删除 `cordis.patch.yml` 中的 insert 段，并删除
+`~/.dsh/profiles/web/node_modules/dsh-pet-whale` 目录，然后重启 dsh web。
 
 ## 🧑‍💻 开发与发布
 
