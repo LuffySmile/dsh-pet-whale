@@ -34,6 +34,11 @@ const React = {
     if (!hookStore.refs[i]) hookStore.refs[i] = { current: initial };
     return hookStore.refs[i];
   },
+  useReducer: (reducer, init) => {
+    const i = cursor++;
+    if (hookStore.state[i] === undefined) hookStore.state[i] = typeof init === 'function' ? init() : init;
+    return [hookStore.state[i], () => {}];
+  },
 };
 
 // ---- execute the bundle factory ----
