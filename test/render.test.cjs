@@ -7,7 +7,7 @@ const src = fs.readFileSync(path.join(__dirname, '..', 'lib', 'client.js'), 'utf
 
 // ---- stub browser/module environment ----
 global.window = { __ModuleLoader__: { load: (handoff) => { global.__handoff = handoff; } } };
-// no global.document → CSS injection skipped via typeof check
+// no global.document/localStorage → CSS injection & pref read fall back safely
 
 // ---- stub React ----
 const hookStore = { effects: [], state: [], refs: [] };
@@ -65,27 +65,30 @@ if (typeof apply !== 'function' || !Array.isArray(inject)) {
   process.exit(1);
 }
 
-// ---- stub slots service + run apply to capture the component ----
-let injectCb = null;
-let registered = null;
+// ---- stub slots service + run apply, collect ALL registrations ----
+const injectCbs = [];
+const registrations = [];
 const fakeSlots = {
-  inject: (name, cb) => { injectCb = cb; },
-  register: (opts, comp) => { registered = comp; return comp; },
+  inject: (name, cb) => { injectCbs.push(cb); },
+  register: (opts, comp) => { registrations.push({ opts, comp }); return comp; },
 };
 const fakeCtx = { get: (name) => (name === 'slots' ? fakeSlots : undefined) };
 apply(fakeCtx);
-if (!injectCb) { console.error('FAIL: slots.inject not called'); process.exit(1); }
-injectCb();
-if (!registered) { console.error('FAIL: slots.register not called'); process.exit(1); }
+if (injectCbs.length === 0) { console.error('FAIL: slots.inject never called'); process.exit(1); }
+injectCbs.forEach((cb) => cb());
+if (registrations.length === 0) { console.error('FAIL: no slot registered'); process.exit(1); }
 
-// ---- render the pet component (one pass) ----
-try {
-  resetHooks();
-  registered();
-  console.log('OK: component rendered without error');
-  for (const eff of hookStore.effects) console.log('    effect deps:', JSON.stringify(eff.deps));
-} catch (e) {
-  console.error('FAIL render:', e.name, e.message);
-  process.exit(1);
+// ---- render every registered component (one pass each) ----
+let failed = false;
+for (const { opts, comp } of registrations) {
+  try {
+    resetHooks();
+    comp();
+    console.log('OK render:', opts.name, '[' + opts.id + ']', 'hooks:', hookStore.state.length + 's/' + hookStore.effects.length + 'e');
+    for (const eff of hookStore.effects) console.log('    effect deps:', JSON.stringify(eff.deps));
+  } catch (e) {
+    failed = true;
+    console.error('FAIL render:', opts.name, '[' + opts.id + ']', e.name, e.message);
+  }
 }
-process.exit(0);
+process.exit(failed ? 1 : 0);
